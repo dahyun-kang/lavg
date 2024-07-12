@@ -1,0 +1,4 @@
+
+**/__pycache__/**
+panoptic_cut/pred/*
+panoptic_cut/*.pth
