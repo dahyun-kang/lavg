@@ -15,7 +15,7 @@ This repo is the official implementation of the ECCV 2024 paper [In Defense of L
 ```bash
 conda env create -f environment.yml --prefix $YOURPREFIX
 ```
-`$YOUPREFIX` is typically `/home/anaconda3`
+`$YOUPREFIX` is typically `/home/$USER/anaconda3`
 
 
 ## Dependencies
@@ -36,9 +36,9 @@ The COCO-Object dataset can be converted from COCO-Stuff164k by executing the fo
 python datasets/cvt_coco_object.py PATH_TO_COCO_STUFF164K -o PATH_TO_COCO164K
 ```
 
-Place them under `yourdatasetroot/` directory such that:
+Place them under `$yourdatasetroot/` directory such that:
 ```
-    yourdatasetroot/
+    $yourdatasetroot/
     ├── ADEChallengeData2016/
     │   ├── annotations/
     │   ├── images/
@@ -59,16 +59,45 @@ Place them under `yourdatasetroot/` directory such that:
 ## 1) Panoptic Cut for unsupervised object mask discovery
 ```bash
 cd panoptic_cut
-python predict.py --logs panoptic_cut --dataset {VOC2012/coco_stuff164k/ADEChallengeData2016} --N 16 --imgsize 640 --datasetroot yourdatasetroot
+python predict.py \
+    --logs panoptic_cut \
+    --dataset {coco_object, coco_stuff, ade20k, voc21, voc20, context60, context59} \
+    --datasetroot $yourdatasetroot
+```
+
+The checkpoints for the panoptic mask discovery is found below google drive:
+| mask prediction root after stage 1) | benchmark id                       | Google drive link                                                                                         |
+|-------------------------------------|------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| coco_stuff164k                      | coco_object, coco_stuff164k        | [link to download (84.5 MB)](https://drive.google.com/file/d/1iEchLAXk6F9bOks-SQ-x6NBZg90xWUQY/view?usp=share_link) |
+| VOC2012                             | context59, context60, voc20, voc21 | [link to download (66.7 MB)](https://drive.google.com/file/d/1Y2smJrJX-p4i6NZ0kYe698r2HQ4kUWcM/view?usp=drive_link) |
+| ADEChallengeData2016                | ade20k                             | [link to download (29.4 MB)](https://drive.google.com/file/d/17XvE9OOtyaoFqAWbJrUd41nDEbNwAB9F/view?usp=share_link) |
+
+Place them under `lavg/panoptic_cut/pred/` directory such that:
+```
+    lavg/panoptic_cut/pred/panoptic_cut/
+    ├── ADEChallengeData2016/
+    │   ├── ADE_val_00000001.pth
+    │   ├── ADE_val_00000002.pth
+    │   ├── ...
+    ├── VOC2012/
+    │   ├── 2007_000033.pth
+    │   ├── 2007_000042.pth
+    │   ├── ...
+    ├── coco_stuff164k/
+    │   ├── 000000000139.pth
+    │   ├── 000000000285.pth
+    │   ├── ...
 ```
 
 
 ## 2) Visual grounding & Segmentation evaluation
+Update `$yourdatasetroot` in `configs/cfg_*.py`
+
 ```bash
-cd lazygrounding
+cd lavg
 python eval.py --config ./configs/{cfg_context59/cfg_context60/cfg_voc20/cfg_voc21}.py --maskpred_root VOC2012/panoptic_cut
 python eval.py --config ./configs/cfg_ade20k.py --maskpred_root ADEChallengeData2016/panoptic_cut
-python eval.py --config ./configs/{cfg_coco_object/fg_coco_stuff164k}.py --maskpred_root coco_stuff164k/panoptic_cut
+python eval.py --config ./configs/{cfg_coco_object/cfg_coco_stuff164k}.py --maskpred_root coco_stuff164k/panoptic_cut
 ```
 The run is a single-GPU compatible.
 
