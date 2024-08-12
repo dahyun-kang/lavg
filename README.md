@@ -8,7 +8,7 @@
 </div>
 <br />
 
-This repo is the official implementation of the ECCV 2024 paper [In Defense of Lazy Visual Grounding for Open-Vocabulary Semantic Segmentation]()
+This repo is the official implementation of the ECCV 2024 paper [In Defense of Lazy Visual Grounding for Open-Vocabulary Semantic Segmentation](https://arxiv.org/pdf/2408.04961)
 
 
 ## Conda installation command
