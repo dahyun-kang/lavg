@@ -8,6 +8,17 @@
 </div>
 <br />
 
+
+<div align="center">
+  <a href="https://arxiv.org/abs/2408.04961"><img src="https://img.shields.io/badge/arXiv-2408.04961-b31b1b.svg"/></a>
+  <a href="http://cvlab.postech.ac.kr/research/lazygrounding"><img src="https://img.shields.io/static/v1?label=project homepage&message=LaVG&color=9cf"/></a>
+</div>
+<br />
+
+<div align="center">
+  <img src="datasets/main.png" alt="result"/>
+</div>
+
 This repo is the official implementation of the ECCV 2024 paper [In Defense of Lazy Visual Grounding for Open-Vocabulary Semantic Segmentation](https://arxiv.org/pdf/2408.04961)
 
 
@@ -102,6 +113,39 @@ python eval.py --config ./configs/{cfg_coco_object/cfg_coco_stuff164k}.py --mask
 The run is a single-GPU compatible.
 
 
+
+
+## Quantitative performance (mIoU, \%) on open-vocabulary semantic segmentation benchmarks
+
+<table>
+  <tr>
+    <td></td>
+    <td colspan="3" align="center"><strong>With background category</strong></td>
+    <td colspan="4" align="center"><strong>Without background category</strong></td>
+  </tr>
+  <tr>
+    <td align="left">Method</td>
+    <td align="center">VOC21</td>
+    <td align="center">Context60</td>
+    <td align="center">COCO-obj</td>
+    <td align="center">VOC20</td>
+    <td align="center">Context59</td>
+    <td align="center">ADE</td>
+    <td align="center">COCO-stuff</td>
+  </tr>
+  <tr>
+    <td align="left">LaVG</td>
+    <td align="center">62.1</td>
+    <td align="center">31.6</td>
+    <td align="center">34.2</td>
+    <td align="center">82.5</td>
+    <td align="center">34.7</td>
+    <td align="center">15.8</td>
+    <td align="center">23.2</td>
+  </tr>
+</table>
+
+      
 ## Related repos
 Our project refers to and heavily borrows some the codes from the following repos:
 
