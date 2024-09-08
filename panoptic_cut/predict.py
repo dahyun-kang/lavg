@@ -200,6 +200,10 @@ if __name__ == '__main__':
             args.imgroot = os.path.join(args.datasetroot, 'VOCdevkit/VOC2012/JPEGImages')
             args.outputroot = os.path.join('pred', 'VOC2012')  # force to share the same output dir with voc20/21
             imglistfile = 'imglist/context_imgs.txt'
+        elif args.dataset == 'cityscapes':
+            args.imgroot = os.path.join(args.datasetroot, 'Cityscapes/leftImg8bit/val')
+            args.outputroot = os.path.join('pred', 'Cityscapes')
+            imglistfile = 'imglist/cityscapes_imgs.txt'
         else:
             raise NotImplementedError
 
