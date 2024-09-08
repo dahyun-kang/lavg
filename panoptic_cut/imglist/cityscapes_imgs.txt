@@ -308,7 +308,7 @@ lindau_000039_000019_leftImg8bit.png
 lindau_000040_000019_leftImg8bit.png
 lindau_000041_000019_leftImg8bit.png
 lindau_000042_000019_leftImg8bit.png
-lindau_0000P1+r[24~\P0+r\P0+r\P1+r\P0+r\P1+r[3~\P1+rOH\P1+rOF\P1+r[5~\P1+r[6~\43_000019_leftImg8bit.png
+lindau_000043_000019_leftImg8bit.png
 lindau_000044_000019_leftImg8bit.png
 lindau_000045_000019_leftImg8bit.png
 lindau_000046_000019_leftImg8bit.png

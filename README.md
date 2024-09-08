@@ -40,7 +40,7 @@ pip install ftfy regex yapf==0.40.1
 
 
 ## Dataset preparation
-Please make it compatible with Pascal VOC 2012, Pascal Context, COCO stuff 164K, COCO object, and ADEChallengeData2016 following the [MMSeg data preparation](https://github.com/open-mmlab/mmsegmentation/blob/main/docs/en/user_guides/2_dataset_prepare.md).
+Please make it compatible with Pascal VOC 2012, Pascal Context, COCO stuff 164K, COCO object, ADEChallengeData2016, and Cityscapes following the [MMSeg data preparation](https://github.com/open-mmlab/mmsegmentation/blob/main/docs/en/user_guides/2_dataset_prepare.md).
 The COCO-Object dataset can be converted from COCO-Stuff164k by executing the following command:
 
 ```
@@ -62,6 +62,10 @@ Place them under `$yourdatasetroot/` directory such that:
     │   ├── annotations/
     │   ├── images/
     │   ├── ...
+    ├── Cityscapes/
+    │   ├── gtFine/
+    │   ├── leftImg8bit/
+    │   ├── ...
     ├── ...
 ```
 
@@ -72,7 +76,7 @@ Place them under `$yourdatasetroot/` directory such that:
 cd panoptic_cut
 python predict.py \
     --logs panoptic_cut \
-    --dataset {coco_object, coco_stuff, ade20k, voc21, voc20, context60, context59} \
+    --dataset {coco_object, coco_stuff, ade20k, voc21, voc20, context60, context59, cityscapes} \
     --datasetroot $yourdatasetroot
 ```
 
@@ -82,6 +86,7 @@ The checkpoints for the panoptic mask discovery is found below google drive:
 | coco_stuff164k                      | coco_object, coco_stuff164k        | [link to download (84.5 MB)](https://drive.google.com/file/d/1iEchLAXk6F9bOks-SQ-x6NBZg90xWUQY/view?usp=share_link) |
 | VOC2012                             | context59, context60, voc20, voc21 | [link to download (66.7 MB)](https://drive.google.com/file/d/1Y2smJrJX-p4i6NZ0kYe698r2HQ4kUWcM/view?usp=drive_link) |
 | ADEChallengeData2016                | ade20k                             | [link to download (29.4 MB)](https://drive.google.com/file/d/17XvE9OOtyaoFqAWbJrUd41nDEbNwAB9F/view?usp=share_link) |
+| Cityscapes                          | cityscapes                         | [link to download (23.1 MB)](https://drive.google.com/file/d/1GJ_cNu8syRhteEuW0sTuKF-sQkHnRAaa/view?usp=share_link) |
 
 Place them under `lavg/panoptic_cut/pred/` directory such that:
 ```
@@ -98,6 +103,9 @@ Place them under `lavg/panoptic_cut/pred/` directory such that:
     │   ├── 000000000139.pth
     │   ├── 000000000285.pth
     │   ├── ...
+    ├── Cityscapes/
+    │   ├── frankfurt_000000_000294_leftImg8bit.pth
+    │   ├── ...
 ```
 
 
@@ -109,6 +117,7 @@ cd lavg
 python eval.py --config ./configs/{cfg_context59/cfg_context60/cfg_voc20/cfg_voc21}.py --maskpred_root VOC2012/panoptic_cut
 python eval.py --config ./configs/cfg_ade20k.py --maskpred_root ADEChallengeData2016/panoptic_cut
 python eval.py --config ./configs/{cfg_coco_object/cfg_coco_stuff164k}.py --maskpred_root coco_stuff164k/panoptic_cut
+python eval.py --config ./configs/cfg_city_scapes.py --maskpred_root Cityscapes/panoptic_cut
 ```
 The run is a single-GPU compatible.
 
@@ -121,7 +130,7 @@ The run is a single-GPU compatible.
   <tr>
     <td></td>
     <td colspan="3" align="center"><strong>With background category</strong></td>
-    <td colspan="4" align="center"><strong>Without background category</strong></td>
+    <td colspan="5" align="center"><strong>Without background category</strong></td>
   </tr>
   <tr>
     <td align="left">Method</td>
@@ -132,6 +141,7 @@ The run is a single-GPU compatible.
     <td align="center">Context59</td>
     <td align="center">ADE</td>
     <td align="center">COCO-stuff</td>
+    <td align="center">Cityscapes</td>
   </tr>
   <tr>
     <td align="left">LaVG</td>
@@ -142,6 +152,7 @@ The run is a single-GPU compatible.
     <td align="center">34.7</td>
     <td align="center">15.8</td>
     <td align="center">23.2</td>
+    <td align="center">26.2</td>
   </tr>
 </table>
 
