@@ -167,3 +167,18 @@ Our project refers to and heavily borrows some the codes from the following repo
 ## Acknowledgements
 This work was supported by Samsung Electronics (IO201208-07822-01), the NRF grant (NRF-2021R1A2C3012728 (45%), and the IITP grants (RS-2022-II220959: Few-Shot Learning of Causal Inference in Vision and Language for Decision Making (50%), RS-2019-II191906: AI Graduate School Program at POSTECH (5%)) funded by Ministry of Science and ICT, Korea.
 We also thank [Sua Choi](https://github.com/sua-choi) for her helpful discussion.
+
+
+
+## BibTex source
+If you find our code or paper useful, please consider citing our paper:
+
+```BibTeX
+@inproceedings{kang2024lazy,
+  title={In Defense of Lazy Visual Grounding for Open-Vocabulary Semantic Segmentation},
+  author={Kang, Dahyun and Cho, Minsu},
+  booktitle={European Conference on Computer Vision},
+  year={2024}
+}
+```
+
